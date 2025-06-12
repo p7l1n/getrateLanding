@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 .features {
-  padding: 5rem 5%;
+  padding: 1.5rem 5%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;

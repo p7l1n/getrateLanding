@@ -43,7 +43,7 @@ export default {
 
 <style lang="scss" scoped>
 .info-section {
-  padding: 5rem 5%;
+  padding: 1.5rem 5%;
   background: rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;

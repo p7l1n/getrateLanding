@@ -1,7 +1,10 @@
 <template>
   <nav>
-    <div class="logo-text">
-      <span>Get</span><span>Rate</span>
+    <div class="logo-container">
+      <img src="@/assets/logo.png" alt="logo" class="logo">
+      <div class="logo-text">
+        <span>Get</span><span>Rate</span>
+      </div>
     </div>
     <a href="#" class="nav-cta" @click="openTelegram">Обменять</a>
   </nav>
@@ -30,11 +33,27 @@ nav {
   backdrop-filter: blur(10px);
   background: rgba(18, 18, 18, 0.8);
   border-bottom: 1px solid var(--glass);
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .logo {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+  }
 }
 
 .logo-text {
   font-size: 1.8rem;
   font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
   
   span:first-child {
     color: white;
