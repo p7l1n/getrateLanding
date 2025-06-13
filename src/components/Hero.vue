@@ -2,7 +2,7 @@
   <section class="hero">
     <div class="hero-content">
       <h1>GetRate<span> - каждый курс на счету!</span></h1>            
-      <p>Лучший мультивалютный обменник. Лучший курс – в любом направлении!</p>
+      <p>Лучший мультивалютный обменник. Выгодный и мгновенный обмен криптовалют!</p>
       <button class="cta-button" @click="openTelegram">Купить/Продать</button>
     </div>
     
@@ -229,20 +229,26 @@ p {
   .hero {
     height: auto;
     min-height: 100vh;
-    padding-top: 80px;
+    padding-top: 160px;
     padding-bottom: 80px;
   }
   
   .rates-container {
     max-width: 350px;
+    margin-top: 60px;
   }
 }
 
 /* Мобильная версия */
 @media (max-width: 480px) {
+  .hero {
+    padding-top: 180px;
+  }
+
   .rates-container {
     padding: 15px;
     max-width: 100%;
+    margin-top: 50px;
   }
   
   .rates-cell {
