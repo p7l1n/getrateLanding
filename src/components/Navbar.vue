@@ -1,11 +1,15 @@
 <template>
   <nav>
-    <div class="logo-container">
-      <img src="@/assets/logo.png" alt="logo" class="logo">
-      <div class="logo-text">
-        <span>Get</span><span>Rate</span>
+    <transition name="fade-slide">
+      <div class="logo-container" v-show="isVisible">
+        <transition name="scale">
+          <img src="@/assets/logo.png" alt="logo" class="logo" v-show="isVisible">
+        </transition>
+        <div class="logo-text">
+          <span>Get</span><span>Rate</span>
+        </div>
       </div>
-    </div>
+    </transition>
     <a href="#" class="nav-cta" @click="openTelegram">Обменять</a>
   </nav>
 </template>
@@ -13,6 +17,16 @@
 <script>
 export default {
   name: 'Navbar',
+  data() {
+    return {
+      isVisible: false
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isVisible = true
+    }, 100)
+  },
   methods: {
     openTelegram() {
       window.open('https://t.me/GetRate_Bot', '_blank')
@@ -22,6 +36,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 0.8s ease;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.6s ease;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
 nav {
   display: flex;
   justify-content: space-between;

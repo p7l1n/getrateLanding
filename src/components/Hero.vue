@@ -1,11 +1,44 @@
 <template>
   <section class="hero">
-    <div class="hero-content hidden">
-      <!-- <p class="slogan">GetRate — каждый курс на счету!</p> -->
-      <h1>GetRate<span>— каждый курс на счету!</span></h1>            
-      <p>Лучший мультивалютный обменник</p>
+    <div class="hero-content">
+      <h1>GetRate<span> - каждый курс на счету!</span></h1>            
+      <p>Лучший мультивалютный обменник. Лучший курс – в любом направлении!</p>
       <button class="cta-button" @click="openTelegram">Купить/Продать</button>
     </div>
+    
+    <div class="rates-container">
+      <div class="rates-table">
+        <transition name="fade-slide">
+          <div class="rates-header" v-show="isVisible">
+            <div class="rates-cell">Валюта</div>
+            <div class="rates-cell">Покуп.</div>
+            <div class="rates-cell">Продаж.</div>
+          </div>
+        </transition>
+        <transition name="fade-slide">
+          <div class="rates-row" v-show="isVisible" style="transition-delay: 0.1s">
+            <div class="rates-cell">RUB</div>
+            <div class="rates-cell">85.42</div>
+            <div class="rates-cell">86.15</div>
+          </div>
+        </transition>
+        <transition name="fade-slide">
+          <div class="rates-row" v-show="isVisible" style="transition-delay: 0.2s">
+            <div class="rates-cell">USD</div>
+            <div class="rates-cell">1.00</div>
+            <div class="rates-cell">1.02</div>
+          </div>
+        </transition>
+        <transition name="fade-slide">
+          <div class="rates-row" v-show="isVisible" style="transition-delay: 0.3s">
+            <div class="rates-cell">EUR</div>
+            <div class="rates-cell">0.92</div>
+            <div class="rates-cell">0.94</div>
+          </div>
+        </transition>
+      </div>
+    </div>
+
     <div alt="TRX Logo" class="trx-logo"></div>
   </section>
 </template>
@@ -13,13 +46,22 @@
 <script>
 export default {
   name: 'Hero',
+  data() {
+    return {
+      isVisible: false
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isVisible = true
+    }, 100)
+  },
   methods: {
     openTelegram() {
       window.scrollTo({
         top: document.body.clientWidth > 768 ? 640 : 720,
         behavior: "smooth"
       });
-      // window.open('https://t.me/GetRate_Bot', '_blank')
     }
   }
 }
@@ -29,8 +71,10 @@ export default {
 .hero {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 0 5%;
+  justify-content: center;
+  padding: 20px 5%;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(249, 199, 79, 0.1));
@@ -53,6 +97,45 @@ export default {
   max-width: 600px;
   position: relative;
   z-index: 2;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.rates-container {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.rates-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.rates-header, .rates-row {
+  display: flex;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rates-header {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.rates-cell {
+  flex: 1;
+  text-align: center;
+  padding: 0 10px;
 }
 
 .trx-logo {
@@ -60,6 +143,8 @@ export default {
   right: 5%;
   top: 50%;
   transform: translateY(-50%);
+  // top: 35%;
+  // transform: scale(1.5);
   width: 300px;
   height: 300px;
   z-index: 1;
@@ -72,7 +157,7 @@ export default {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   margin-bottom: 1.5rem;
   line-height: 1.2;
 
@@ -82,17 +167,10 @@ h1 {
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   margin-bottom: 2.5rem;
   opacity: 0.8;
   line-height: 1.6;
-}
-
-.slogan {
-  font-size: 1.5rem;
-  color: var(--primary);
-  margin-bottom: 15px;
-  font-weight: 600;
 }
 
 .cta-button {
@@ -107,6 +185,7 @@ p {
   text-decoration: none;
   display: inline-block;
   font-size: 1.1rem;
+  margin-top: 20px;
 
   &:hover {
     transform: translateY(-3px);
@@ -114,49 +193,77 @@ p {
   }
 }
 
+/* Десктопная версия */
+@media (min-width: 1024px) {
+  .hero {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+  }
+  
+  .hero-content {
+    text-align: left;
+    margin-bottom: 0;
+    margin-right: 40px;
+  }
+  
+  .rates-container {
+    position: absolute;
+    // right: 10%;
+    // top: 50%;
+    right: 15%;
+    top: 60%;
+    transform: translateY(-50%);
+    margin: 0;
+    max-width: 280px;
+  }
+}
+
+/* Планшетная версия */
 @media (max-width: 1024px) {
   .trx-logo {
     display: none;
   }
   
   .hero {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    padding-top: 80px;
     height: auto;
     min-height: 100vh;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
   
-  .hero-content {
-    margin-bottom: 2rem;
+  .rates-container {
+    max-width: 350px;
+  }
+}
+
+/* Мобильная версия */
+@media (max-width: 480px) {
+  .rates-container {
+    padding: 15px;
     max-width: 100%;
   }
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
   
-  .slogan {
-    font-size: 1.2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 2rem;
-  }
-  
-  p {
-    font-size: 1rem;
+  .rates-cell {
+    padding: 0 5px;
+    font-size: 0.9rem;
   }
   
   .cta-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
     width: 100%;
+    padding: 0.8rem;
   }
 }
-</style> 
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 0.5s ease;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+</style>
