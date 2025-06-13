@@ -1,5 +1,5 @@
 <template>
-  <section class="exchange-section">
+  <section id="calc" class="exchange-section">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Калькулятор</h2>

@@ -1,10 +1,10 @@
 <template>
   <section class="hero">
     <div class="hero-content hidden">
-      <p class="slogan">GetRate — каждый курс на счету!</p>
-      <h1>Быстрый и надежный <span>обменник криптовалют</span></h1>            
-      <p>Ваш партнер для финансовых операций, предлагает быстрый и безопасный обмен криптовалют без комиссии.</p>
-      <button class="cta-button" @click="openTelegram">Обменять сейчас</button>
+      <!-- <p class="slogan">GetRate — каждый курс на счету!</p> -->
+      <h1>GetRate<span>— каждый курс на счету!</span></h1>            
+      <p>Лучший мультивалютный обменник</p>
+      <button class="cta-button" @click="openTelegram">Купить/Продать</button>
     </div>
     <div alt="TRX Logo" class="trx-logo"></div>
   </section>
@@ -15,7 +15,11 @@ export default {
   name: 'Hero',
   methods: {
     openTelegram() {
-      window.open('https://t.me/GetRate_Bot', '_blank')
+      window.scrollTo({
+        top: document.body.clientWidth > 768 ? 640 : 720,
+        behavior: "smooth"
+      });
+      // window.open('https://t.me/GetRate_Bot', '_blank')
     }
   }
 }

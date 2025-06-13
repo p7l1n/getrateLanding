@@ -2,8 +2,8 @@
   <div class="main">
     <Navbar />
     <Hero />
-    <Features />
     <RatesTicker />
+    <Features />
     <InfoSection />
     <Footer />
     <div id="particles-js"></div>
